@@ -3,8 +3,8 @@ function site() {
 
     obj.stack.push(function (){
 
-        obj.mesh.rotation.x += 0.01;
-        obj.mesh.rotation.y += 0.01;
+        obj.rotation.x += 0.01;
+        obj.rotation.y += 0.01;
     });
 
     //new interaction obj for this obj
@@ -13,7 +13,7 @@ function site() {
         console.log("Hey");
     };
 
-    obj.mesh.position.y = 0;
+    obj.position.y = 0;
 }
 
 site();

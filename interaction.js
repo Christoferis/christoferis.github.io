@@ -26,14 +26,17 @@ function _mouseButtons(event){
 }
 
 //internal function for use in the loop thingy, courtesy of: https://threejs.org/docs/#api/en/core/Raycaster
+
+//where is the mouse?
 function _mouseRaycast(event, camera) {
     var pointerVec = new THREE.Vector2((event.clientX / window.innerWidth) * 2 - 1, -1 *(event.clientY / window.innerHeight) * 2 + 1);
 
     raycaster.setFromCamera(pointerVec, camera);
 
     for(const sub of subscribers){
-        if(raycaster.intersectObject){
-            
+
+        if(raycaster.intersectObject(sub.attachedOBJ).length >= 1){
+            sub.onHover();
         }
     }
 }

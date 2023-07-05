@@ -5,13 +5,11 @@
 function newObject(geometry, material) {
     //change to Object3D
     //add in onInteraction function event thingy
-    
-    var comp = {stack: [], material: material, geometry: geometry};
-    comp.mesh = new THREE.Mesh(comp.geometry, comp.material);
-    
-    
+    var comp = new THREE.Mesh(geometry, material);
+    comp.stack = [];
+        
     all_objs.push(comp);
-    scene.add(comp.mesh);
+    scene.add(comp);
     return comp;
 }
 

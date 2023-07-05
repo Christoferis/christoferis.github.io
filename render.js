@@ -14,7 +14,7 @@ const all_objs = [];
  
 function add(obj) {
     all_objs.push(obj);
-    scene.add(obj.mesh);
+    scene.add(obj);
 }
 
 //standard new Composite, stack are functions that are run as subroutine
@@ -37,16 +37,12 @@ addEventListener("mouseup", _mouseButtons);
 // create new background
 const background = newObject(new THREE.PlaneGeometry(window.innerWidth, window.innerHeight));
 //move  further into background
-background.mesh.position.z = -500;
+background.position.z = -500;
 
 
 function backgroundColor(color) {
     background.material = new THREE.MeshBasicMaterial({color: color});
 }
-
-
-//adds the cube to the scene
-
 
 // Make the camera further from the cube so we can see it better
 camera.position.z = 5;
