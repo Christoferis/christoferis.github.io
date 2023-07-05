@@ -26,10 +26,18 @@ renderer.setClearColor(0xaaaaaa, 1);
 // Append the renderer canvas into <body>
 document.body.appendChild(renderer.domElement);
 
+//add mouse listener
+addEventListener("pointermove", function (event) {
+    _mouseRaycast(event, camera);
+});
+//on mouse up to avoid miss clicks
+addEventListener("mouseup", _mouseButtons);
 
-// A cube we are going to animate
+
+// create new background
 const background = newObject(new THREE.PlaneGeometry(window.innerWidth, window.innerHeight));
-
+//move  further into background
+background.mesh.position.z = -500;
 
 
 function backgroundColor(color) {
@@ -43,6 +51,7 @@ function backgroundColor(color) {
 // Make the camera further from the cube so we can see it better
 camera.position.z = 5;
 
+//mainloop
 function render() {
   // Render the scene and the camera
   renderer.render(scene, camera);
