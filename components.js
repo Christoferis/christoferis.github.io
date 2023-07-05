@@ -2,8 +2,8 @@
 
 
 //basically the createNew() function that creates a new basic object, conforms to THREE Object standards, stack for processing different functions during loop
-function newObject() {
-    var comp = {stack: [], material: new THREE.MeshBasicMaterial({color: 0xff00ff}), geometry: new THREE.PlaneGeometry(0.1, 0.1)};
+function newObject(geometry, material) {
+    var comp = {stack: [], material: material, geometry: geometry};
 
     comp.mesh = new THREE.Mesh(comp.geometry, comp.material);
     all_objs.push(comp);
@@ -11,4 +11,14 @@ function newObject() {
     return comp;
 }
 
+//adds in all the interaction stuff needed
+function interactionComponent(obj) {
+    //action: function that is run upon the click
+    obj.stack.push(function name(params) {
+        
+    });
+    
+    
+    
+}
 

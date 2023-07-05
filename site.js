@@ -1,10 +1,6 @@
 function site() {
-    var obj = newObject();
+    var obj = newObject(new THREE.CubeGeometry(1, 1, 1), new THREE.MeshBasicMaterial({color: 0xff00ff}));
 
-    //do stuff
-    obj.geometry = new THREE.CubeGeometry(1, 1, 1);
-    obj.material = new THREE.MeshBasicMaterial({color: 0xff00ff});
-    obj.mesh = new THREE.Mesh(obj.geometry, obj.material);
     obj.stack.push(function (){
 
         obj.mesh.rotation.x += 0.01;

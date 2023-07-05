@@ -28,12 +28,9 @@ document.body.appendChild(renderer.domElement);
 
 
 // A cube we are going to animate
-const background = newObject();
-background.geometry = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight);
-background.material = new THREE.MeshBasicMaterial({color: 0x00ffff})
-background.mesh = new THREE.Mesh(background.geometry, background.material);
+const background = newObject(new THREE.PlaneGeometry(window.innerWidth, window.innerHeight));
 
-//background things
+
 
 function backgroundColor(color) {
     background.material = new THREE.MeshBasicMaterial({color: color});
@@ -41,7 +38,7 @@ function backgroundColor(color) {
 
 
 //adds the cube to the scene
-add(background);
+
 
 // Make the camera further from the cube so we can see it better
 camera.position.z = 5;
