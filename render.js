@@ -30,8 +30,10 @@ document.body.appendChild(renderer.domElement);
 addEventListener("pointermove", function (event) {
     _mouseRaycast(event, camera);
 });
-//on mouse up to avoid miss clicks
-addEventListener("mouseup", _mouseButtons);
+
+//Mouse up and mouse down for dragging
+addEventListener("mousedown", _mouseButtonDown);
+addEventListener("mouseup", _mouseButtonUp);
 
 
 // create new background
@@ -47,21 +49,39 @@ function backgroundColor(color) {
 // Make the camera further from the cube so we can see it better
 camera.position.z = 5;
 
+//to make dragging a little nicer
+let curr_drag = 0;
+
 //mainloop
 function render() {
   // Render the scene and the camera
-  renderer.render(scene, camera);
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
 
-    //solve stack call problem
-  // Rotate the cube every frame
+    //Backend begins here
     for (let obj of all_objs) {
         for (let fun of obj.stack) {
             fun();
         }
     }
 
-  // Make it call the render() function about every 1/60 second
-  requestAnimationFrame(render);
+    //dragging func
+    
+    if(current_hover != null && current_hover.isLeftMouse){
+        curr_drag += 1;
+        
+    }else if(current_hover != null){
+        current_hover.isDrag = false;
+        curr_drag = 0;
+    }else{
+        curr_drag = 0;
+    }
+
+    if(current_hover != null && curr_drag >= 10){
+        current_hover.isDrag = true;
+        current_hover.onDrag();
+    }
+
 }
 
 render();

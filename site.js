@@ -1,17 +1,23 @@
 function site() {
-    var obj = newObject(new THREE.CubeGeometry(1, 1, 1), new THREE.MeshBasicMaterial({color: 0xffffff}));
+    var color = new THREE.MeshBasicMaterial({color: 0xffffff});
+    var otherColor = new THREE.MeshBasicMaterial({color: 0x00ffff});
+    var obj = newObject(new THREE.CubeGeometry(1, 1, 1), color);
 
-    obj.stack.push(function (){
-
-        obj.rotation.x += 0.01;
-        obj.rotation.y += 0.01;
-    });
-
-    //new interaction obj for this obj
+    //new interaction object
     var intOBJ = new interactionOBJ(obj);
     intOBJ.onHover = function () {
-        console.log("Hey");
+        obj.material = otherColor;
     };
+    
+    obj.stack.push(function (){
+        obj.rotation.x += 0.01;
+        obj.rotation.y += 0.01;
+
+        if(obj.material == otherColor && !intOBJ.isHovering){
+            obj.material = color;
+        }
+        
+    });
 
     obj.position.y = 0;
 }
