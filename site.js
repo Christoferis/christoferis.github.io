@@ -5,18 +5,22 @@ function site() {
 
     //new interaction object
     var intOBJ = new interactionOBJ(obj);
-    intOBJ.onHover = function () {
+    intOBJ.onLeftMouseDown = function () {
         obj.material = otherColor;
+    };
+
+    intOBJ.onLeftMouseUp = function () {
+        obj.material = color;
+    };
+
+    intOBJ.onDrag = function () {
+        obj.pos = cursor_pos;
     };
     
     obj.stack.push(function (){
         obj.rotation.x += 0.01;
         obj.rotation.y += 0.01;
 
-        if(obj.material == otherColor && !intOBJ.isHovering){
-            obj.material = color;
-        }
-        
     });
 
     obj.position.y = 0;

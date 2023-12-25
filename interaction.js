@@ -3,10 +3,15 @@
 
 const subscribers = [];
 const raycaster = new THREE.Raycaster();
-let current_hover = null;
-let prev_hover = null;
-const dragging = 10;
+var cursor_pos = new THREE.Vector2(0, 0);
 
+//hover
+var current_hover = null;
+var hover_lock = false;
+
+//dragging
+const drag_thresh = 10;
+var dragging = 0;
 
 //object that needs to be attached to an object
 class interactionOBJ{
@@ -24,8 +29,10 @@ class interactionOBJ{
         subscribers.push(this);
     }
 
-    onLeftMouse(){};
-    onRightMouse(){};
+    onLeftMouseDown(){};
+    onRightMouseDown(){};
+    onRightMouseUp(){};
+    onLeftMouseUp(){};
     onDrag(){};
     onHover(){};
 }
@@ -37,34 +44,34 @@ function _mouseButtonDown(event) {
     //only set the boolean as functions should be executed after liftoff
     if(event.button == 0){
         current_hover.isLeftMouse = true;
-    }else if(event.button == 2){
+        current_hover.onLeftMouseDown();
+    } else if(event.button == 2){
         current_hover.isRightMouse = true;
+        current_hover.onRightMouseDown();
     }
-}
 
+}
 
 function _mouseButtonUp(event){
     if(current_hover == null){return;}
-    
+
     //left mouse
-    if(event.button == 0){
+    if (event.button == 0){
+        current_hover.onLeftMouseUp();
         current_hover.isLeftMouse = false;
-        current_hover.onLeftMouse();
         
-    }else if (event.button == 2){ // right mouse
+    } else if (event.button == 2){ // right mouse
+        current_hover.onRightMouseUp();
         current_hover.isRightMouse = false;
-        current_hover.onRightMouse();
     }
 }
 
-
-
 //internal function for use in the loop thingy, courtesy of: https://threejs.org/docs/#api/en/core/Raycaster
-
 function _mouseRaycast(event, camera) {
-    var pointerVec = new THREE.Vector2((event.clientX / window.innerWidth) * 2 - 1, -1 *(event.clientY / window.innerHeight) * 2 + 1);
+    
+    cursor_pos = new THREE.Vector2((event.clientX / window.innerWidth) * 2 - 1, -1 *(event.clientY / window.innerHeight) * 2 + 1);
 
-    raycaster.setFromCamera(pointerVec, camera);
+    raycaster.setFromCamera(cursor_pos, camera);
 
     for(const sub of subscribers){
 
@@ -72,17 +79,10 @@ function _mouseRaycast(event, camera) {
             sub.isHovering = true;
             sub.onHover();
             current_hover = sub;
-
-            if(prev_hover != current_hover){
-                sub.isLeftMouse = false;
-                sub.isRightMouse = false;
-            }
             
         }else{
             sub.isHovering = false;
             current_hover = null;
         }
     }
-
-    prev_hover = current_hover;
 }

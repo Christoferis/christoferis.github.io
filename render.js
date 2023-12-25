@@ -50,7 +50,6 @@ function backgroundColor(color) {
 camera.position.z = 5;
 
 //to make dragging a little nicer
-let curr_drag = 0;
 
 //mainloop
 function render() {
@@ -63,23 +62,6 @@ function render() {
         for (let fun of obj.stack) {
             fun();
         }
-    }
-
-    //dragging func
-    
-    if(current_hover != null && current_hover.isLeftMouse){
-        curr_drag += 1;
-        
-    }else if(current_hover != null){
-        current_hover.isDrag = false;
-        curr_drag = 0;
-    }else{
-        curr_drag = 0;
-    }
-
-    if(current_hover != null && curr_drag >= 10){
-        current_hover.isDrag = true;
-        current_hover.onDrag();
     }
 
 }

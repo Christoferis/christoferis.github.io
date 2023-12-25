@@ -13,3 +13,9 @@ function newObject(geometry, material) {
     return comp;
 }
 
+
+//color as hexa
+//Note to future: should return a newobj to control this button of course
+function Button(position, rotation, size, text, color, func){
+    var obj = newObject(new PlaneGeometry(1, 1), colorMaterial(color));
+}
