@@ -32,8 +32,8 @@ addEventListener("pointermove", function (event) {
 });
 
 //Mouse up and mouse down for dragging
-addEventListener("mousedown", _mouseButtonDown);
-addEventListener("mouseup", _mouseButtonUp);
+addEventListener("pointerdown", _mouseButtonDown);
+addEventListener("pointerup", _mouseButtonUp);
 
 
 // create new background
