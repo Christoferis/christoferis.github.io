@@ -1,4 +1,6 @@
 function site() {
+    new WinBox("Test Window");
+    
     var color = new THREE.MeshBasicMaterial({color: 0xffffff});
     var otherColor = new THREE.MeshBasicMaterial({color: 0x00ffff});
     var obj = newObject(new THREE.CubeGeometry(1, 1, 1), color);
