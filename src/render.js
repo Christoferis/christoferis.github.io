@@ -56,7 +56,7 @@ function render() {
   // Render the scene and the camera
     renderer.render(scene, camera);
     requestAnimationFrame(render);
-
+    
     //Backend begins here
     for (let obj of all_objs) {
         for (let fun of obj.stack) {

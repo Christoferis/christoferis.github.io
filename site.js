@@ -1,6 +1,4 @@
-function site() {
-    new WinBox("Test Window");
-    
+function site() {    
     var color = new THREE.MeshBasicMaterial({color: 0xffffff});
     var otherColor = new THREE.MeshBasicMaterial({color: 0x00ffff});
     var obj = newObject(new THREE.CubeGeometry(1, 1, 1), color);
@@ -9,6 +7,7 @@ function site() {
     var intOBJ = new interactionOBJ(obj);
     intOBJ.onLeftMouseDown = function () {
         obj.material = otherColor;
+        summonWindows();
     };
 
     intOBJ.onLeftMouseUp = function () {

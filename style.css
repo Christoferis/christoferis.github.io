@@ -11,3 +11,12 @@ canvas {
 	height: 100%;
 	padding: 0;
 }
+
+
+.customMin {
+    background-size: 15px auto;
+}
+
+.customMin{
+    background-image: url(https://raw.githubusercontent.com/nextapps-de/winbox/master/src/img/close.svg) !important;
+}
