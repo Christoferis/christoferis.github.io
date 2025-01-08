@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The bottomless pit</title>
+  <title>Days since the last time we have cuddle with eachother</title>
   <link href="lae.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <h1>Scroll runter!</h1>
-  <img src="" alt="">
-  <p>Hey Schatz</p>
-  <textarea rows="10" cols="200"></textarea>
-  <br>
-  <button type="submit">Ab ins Void damit!</button>
+  <h1 id="days-since"></h1>
+  <script>
+    const targetDate = new Date('2024-09-28'); // Replace with your desired date
+    const now = new Date();
+    const diff = Math.floor((now - targetDate) / (1000 * 60 * 60 * 24));
+    document.getElementById('days-since').textContent = `It has been ${diff} days since the last time we have cuddled together...`;
+  </script>
+<h3>Maybe it's time we do that again ;)</h3>
+<footer>
+    <p>*When we are on a date or do something without friends</p>
+</footer>
+
 </body>
 </html>
