@@ -1,0 +1,13 @@
+@keyframes gradientbg {
+    0% {background-color: #ff0000}
+    33% {background-color: #00ff00}
+    66% {background-color: #0000ff}
+    100% {background-color: #ff0000}
+}
+
+body {
+    animation-name: gradientbg;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
