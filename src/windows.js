@@ -17,7 +17,7 @@ function baseWindow(config) {
 }
 
 function aboutme() {
-    var win = baseWindow({title: "about-me", html: "pages/test.html"});
+    var win = baseWindow({title: "about-me", url: "/content/thegreatestplan.html"});
 }
 
 function summonWindows() {
